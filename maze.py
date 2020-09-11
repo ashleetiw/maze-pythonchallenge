@@ -8,8 +8,8 @@ N=10
 row=N
 col=N
 
-start_x,start_y=0,2
-end_x,end_y=N,N
+start_x,start_y=0,4
+end_x,end_y=9,8
 print('enter level 1-9')
 level=int(input())
 level=level/10.0
@@ -27,7 +27,6 @@ matrix=np.ones((row+1,col+1),dtype=int)*255
 #     # generate random coordinate
 #     if count==0:
 # x, y = rnd(0,row), rnd(0,col)
-x,y=1,2
 matrix[y,x] = 0
 # count=count+1
 print('seed point of maze',x,y)
