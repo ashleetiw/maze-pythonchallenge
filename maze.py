@@ -8,6 +8,8 @@ N=30
 row=N
 col=N
 
+start_x,start_y=0,2
+end_x,end_y=N,N
 print('enter level 1-9')
 level=int(input())
 level=level/10.0
@@ -15,7 +17,7 @@ level=level/10.0
 randomness=int(level*N)
 depth=int(level*N)
 # matrix= np.zeros((row+1,col+1), dtype=bool)
-matrix=np.ones((row+1,col+1),dtype=int)
+matrix=np.ones((row+1,col+1),dtype=int)*255
 for i in range(randomness):
     # generate random coordinate
     x, y = rnd(0,row), rnd(0,col)
@@ -35,14 +37,16 @@ for i in range(randomness):
         if len(adjacent):
                 ynext,xnext = adjacent[rnd(0,len(adjacent)-1)] 
                 # if already visited ignore otherwise make it free  
-                if matrix[ynext,xnext] == 1:
+                if matrix[ynext,xnext] == 255:
                     matrix[ynext,xnext] = 0
                     matrix[ynext+(y-ynext)//2, xnext+(x-xnext)//2] = 0
                     matrix[ynext+(y-ynext)//4, xnext+(x-xnext)//4] = 0
                     x, y = xnext, ynext
+    matrix[start_x,start_y]=60
+    matrix[end_x,end_y]=200
     # print(matrix)
 
-plt.imshow(matrix,cmap=plt.cm.binary,interpolation='nearest')
+plt.imshow(matrix,interpolation='nearest')
 plt.xticks([]),plt.yticks([])
 plt.show()
 
